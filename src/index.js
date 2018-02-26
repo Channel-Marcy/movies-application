@@ -12,11 +12,25 @@ const $ = require('jquery');
 
 function showMovies() {
     getMovies().then((movies) => {
-        $('#movieDisplay').html('<h3>Here are all the movies:</h3> ' + '<table id="ourTable" class="table"><thead><tr><th>ID</th><th>Movie</th><th>Rating</th><th>Delete</th></tr></thead><tbody>');
-        movies.forEach(({title, rating, id}) => {
-            $('#ourTable').append(`<tr><td>${id}</td><td>${title}</td><td>${rating}</td><td><button class="remove">Delete</button></td></tr>`);
+        $('#movieDisplay').html('<h3>Here are all the movies:</h3> ' + '<table id="ourTable" class="table"><thead><tr><th id="iD">ID</th><th id="title">Movie</th><th id="rating">Rating</th><th id="genre">Genre</th><th>Delete</th></tr></thead><tbody id="tableBody">');
+        displayMovies(movies);
+
+        $("#rating").click(function(){
+            numSorter(1, "rating");
         });
-        $('#movieDisplay').append('</tbody></table>');
+
+        $("#iD").click(function(){
+          displayMovies(movies);
+        });
+
+        $("#title").click(function(){
+           alphaSorter("title", 1);
+        });
+
+        $("#genre").click(function(){
+           alphaSorter("genre", 3);
+        });
+
         $('.remove').click(function(){
           event.preventDefault();
             let a =$(this).parent().parent()[0].innerText;
@@ -30,6 +44,16 @@ function showMovies() {
     });
 }
 showMovies();
+
+function displayMovies(arr) {
+
+      let html = "";
+        arr.forEach(({title, rating, id, genre}) => {
+        html += `<tr><td>${id}</td><td>${title}</td><td>${rating}</td><td>${genre}</td><td><button class="remove">Delete</button></td></tr>`;
+});
+    html += '</tbody></table>';
+    $("#tableBody").html(html);
+}
 
 // ###################    Check values for input  ##########################
 $('.searchMovie').keyup(function(){
@@ -46,7 +70,8 @@ $('#addMovie').click(function(){
   event.preventDefault();
   let newMovie = {
     title: $('#movieTitle').val(),
-    rating: $('#movieRating').val()
+    rating: $('#movieRating').val(),
+    genre: $('#movieGenre').val()
   };
   const url = ('/api/movies');
   const options = {
@@ -60,6 +85,7 @@ $('#addMovie').click(function(){
       .then(showMovies);
     $('#movieTitle').val('');
     $('#movieRating').val('');
+    $("#movieGenre").val('');
 
 });
 
@@ -70,6 +96,7 @@ $("#getMovie").click(function() {
         let changeMovie = singleMovie(movies);
         $('#editMovieTitle').val(changeMovie[0].title);
         $('#editMovieRating').val(changeMovie[0].rating);
+        $('#editMovieGenre').val(changeMovie[0].genre);
         console.log(changeMovie);
     });
 });
@@ -89,7 +116,8 @@ $("#editMovie").click(function() {
     let updatedMovie = {
         title: $('#editMovieTitle').val(),
         rating: $('#editMovieRating').val(),
-        id: $("#editMovieID").val()
+        id: $("#editMovieID").val(),
+        genre: $('#editMovieGenre').val()
     };
     const url = ('/api/movies/' + parseFloat($("#editMovieID").val()));
     // const url = ("/api/movies");
@@ -105,6 +133,7 @@ $("#editMovie").click(function() {
     $('#editMovieTitle').val("");
     $('#editMovieRating').val("");
     $("#editMovieID").val("");
+    $('#editMovieGenre').val("");
 });
 
 
@@ -145,4 +174,57 @@ $('#editMovieID').keyup(function(){
 function niceTable(){
   $('table').addClass('table');
 }
->>>>>>> master
+
+// window.setTimeout(function() {
+//     $("#myModal").modal("show");
+// }, 1000);
+
+
+
+
+//####################### Sorting Features #######################################
+function numSorter(number, key) {
+    getMovies().then(function(movies) {
+        var numberHolder = [];
+        $('tbody tr').each(function (index, element) {
+            numberHolder.push((element.innerText).match(/\d/g)[number])
+        });
+        numberHolder.sort();
+        numberHolder = numberHolder.filter(function(ele, ind, arr) {
+           return arr.indexOf(ele) == ind;
+        });
+        let newData = [];
+        numberHolder.forEach(function (num){
+            movies.forEach(function(movie) {
+               if (movie[key] === num) {
+                   newData.push(movie);
+               }
+            });
+        });
+        displayMovies(newData);
+        });
+}
+
+function alphaSorter(key, num) {
+    getMovies().then(function(movies) {
+      var alphaHolder = [];
+      for (let i = num; i < $("td").length; i += 5){
+          alphaHolder.push($("td")[i].innerText.toLowerCase());
+      }
+      alphaHolder.sort();
+       alphaHolder = alphaHolder.filter(function(ele, ind, arr) {
+            return arr.indexOf(ele) == ind;
+        });
+      let newData = [];
+      alphaHolder.forEach(function(element) {
+          movies.forEach(function(movie){
+             if (movie[key].toLowerCase() === element){
+                 newData.push(movie);
+             }
+          });
+      });
+    displayMovies(newData);
+    });
+
+}
+
