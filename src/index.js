@@ -98,5 +98,5 @@ $("#editMovie").click(function() {
         .then(showMovies);
     $('#editMovieTitle').val("");
     $('#editMovieRating').val("");
-    $("#editMovieID").val("");
+    $("#editMovieID").val("  ");
 });
