@@ -24,12 +24,11 @@ td{
 }
 #pageHeading{
     color: deepskyblue;
-    margin-left: 330px;
     margin-bottom: 0;
 }
 #secondLine{
+    margin-left: 40px;
     margin-top: 0;
-    margin-left: 370px;
     color: deepskyblue;
     padding: 0;
     margin-bottom: 30px;
@@ -57,6 +56,9 @@ table{
     font-family: 'Permanent Marker', cursive;
 }
 #movieDisplay{
-    height: 200px;
+    height: 300px;
     overflow: auto;
+}
+.topMargin{
+    margin-top: 40px;
 }

@@ -11,10 +11,9 @@
 <body>
 
    <div class="container">
-    <h2 id="pageHeading">Your featured</h2>
-       <h2 id="secondLine">movies:</h2>
 
-    <div class="col-xs-4">
+
+    <div class="col-xs-4 topMargin">
            <form>
             <label class="searchMovie" for="movieTitle">Enter the Movie's Title:
                 <input id="movieTitle" type="text">
@@ -27,9 +26,12 @@
             <button id="addMovie" disabled>Add</button>
             </form>
     </div>
+    <div class="col-xs-5">
+        <h2 id="pageHeading">Your featured</h2>
+        <h2 id="secondLine">movies:</h2>
+    </div>
 
-
-<div class="col-xs-offset-5 col-xs-3">
+<div class="col-xs-3 topMargin">
     <form>
         <label for="editMovieID">Enter the movie's ID.
             <input id="editMovieID" type="text">
