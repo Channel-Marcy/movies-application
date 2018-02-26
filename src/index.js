@@ -12,12 +12,18 @@ const $ = require('jquery');
 
 function showMovies() {
     getMovies().then((movies) => {
-        $('#movieDisplay').html('Here are all the movies: ' + '<br>');
-        // console.log('Here are all the movies:');
+        $('#movieDisplay').html('<h3>Here are all the movies:</h3> ' + '<table id="ourTable" class="table"><thead><tr><th>ID</th><th>Movie</th><th>Rating</th><th>Delete</th></tr></thead><tbody>');
         movies.forEach(({title, rating, id}) => {
-            // console.log(`id#${id} - ${title} - rating: ${rating}`);
-            $('#movieDisplay').append(`id#${id} - ${title} - rating: ${rating}<br>`);
+            $('#ourTable').append(`<tr><td>${id}</td><td>${title}</td><td>${rating}</td><td><button class="remove">Delete</button></td></tr>`);
         });
+        $('#movieDisplay').append('</tbody></table>');
+        $('.remove').click(function(){
+          event.preventDefault();
+            let a =$(this).parent().parent()[0].innerText;
+            let idNum = parseFloat(a.match(/\d/g)[0]);
+            removeMovie(idNum);
+        });
+        niceTable();
     }).catch((error) => {
         alert('Oh no! Something went wrong.\nCheck the console for details.')
         console.log(error);
@@ -98,5 +104,45 @@ $("#editMovie").click(function() {
         .then(showMovies);
     $('#editMovieTitle').val("");
     $('#editMovieRating').val("");
-    $("#editMovieID").val("  ");
+    $("#editMovieID").val("");
 });
+
+
+//#######################   DELETE Movie      #####################################
+
+function removeMovie(idNum){
+      console.log('hello from testing');
+
+      const url = ('/api/movies/' + idNum);
+      const options = {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json'
+          }
+
+      };
+      fetch(url, options)
+          .then(showMovies);
+
+}
+
+
+//################# Check for valid ID input  #############################
+
+$('#editMovieID').keyup(function(){
+
+  let idHolder =[];
+  $('tbody tr').each(function(index,element){idHolder.push((element.innerText).match(/\d/g)[0])})
+
+    if(idHolder.includes($('#editMovieID').val())){
+        $('#getMovie').prop('disabled',false);
+    }else{
+        $('#getMovie').prop('disabled',true);
+    }
+});
+
+
+function niceTable(){
+  $('table').addClass('table');
+}
+>>>>>>> master

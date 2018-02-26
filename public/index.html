@@ -3,33 +3,41 @@
 <head>
     <meta charset="UTF-8" />
     <title>My Application</title>
-    <!--<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">-->
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Permanent+Marker" rel="stylesheet">
 
 </head>
 <body>
 
-    <div class="container">
-        <h1>Hello There!</h1>
-        <p>To get started, edit <code>src/index.js</code>.</p>
+   <div class="container">
+
+
+    <div class="col-xs-4 topMargin">
+           <form>
+            <label class="searchMovie" for="movieTitle">Enter the Movie's Title:
+                <input id="movieTitle" type="text">
+            </label>
+            <br>
+            <label class="searchMovie" for="movieRating">Enter the Movie's Rating:
+                <input id="movieRating" type="text">
+            </label>
+            <br>
+            <button id="addMovie" disabled>Add</button>
+            </form>
+    </div>
+    <div class="col-xs-5">
+        <h2 id="pageHeading">Your featured</h2>
+        <h2 id="secondLine">movies:</h2>
     </div>
 
-
-    <form>
-        <label class="searchMovie" for="movieTitle">Enter the Movie's Title:
-            <input id="movieTitle" type="text">
-        </label>
-        <label class="searchMovie" for="movieRating">Enter the Movie's Rating:
-            <input id="movieRating" type="text">
-        </label>
-        <button id="addMovie" disabled>Add</button>
-    </form>
-
+<div class="col-xs-3 topMargin">
     <form>
         <label for="editMovieID">Enter the movie's ID.
             <input id="editMovieID" type="text">
         </label>
-        <button id="getMovie">Submit</button>
+        <button id="getMovie" disabled>Find!</button>
+        <br>
 
         <label for="editMovieTitle">Edit the Movie's Title:
             <input id="editMovieTitle" type="text">
@@ -39,8 +47,11 @@
         </label>
         <button id="editMovie">Update</button>
     </form>
+</div>
 
-<div id="movieDisplay">
+   </div>
+
+<div class="container" id="movieDisplay">
     Your Page is loading....
 </div>
 
