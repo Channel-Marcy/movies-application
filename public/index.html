@@ -41,10 +41,19 @@
             <label class="searchMovie" for="movieRating">Enter the Movie's Rating:
                 <input id="movieRating" type="text">
             </label>
+               <li class="ratingError text-center">Rating must be between 1 & 10</li>
             <br>
             <label class="searchGenre" for="movieGenre">Enter the Movie's Genre:
-                <input id="movieGenre" type="text">
+                <select name="" id="movieGenre">
+                    <option disabled selected>Select an option</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                    <option value="horror">Horror</option>
+                    <option value="romance">Romance</option>
+                    <option value="sci-fi">Sci-Fi</option>
+                </select>
             </label>
+               <br>
             <button id="addMovie" disabled>Add</button>
             </form>
     </div>
@@ -67,13 +76,24 @@
         <label for="editMovieRating">Edit the Movie's Rating:
             <input id="editMovieRating" type="text">
         </label>
-        <label for="editMovieGenre">Edit the Movie's Genre.
-            <input id="editMovieGenre" type="text">
+        <li class="ratingError2 text-center">Rating must be between 1 & 10</li>
+        <label for="editMovieGenre">Edit the Movie's Genre:
+            <br>
+            <select name="" id="editMovieGenre">
+                <option disabled selected>Select an option</option>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="horror">Horror</option>
+                <option value="romance">Romance</option>
+                <option value="sci-fi">Sci-Fi</option>
+            </select>
         </label>
-        <button id="editMovie">Update</button>
+        <br>
+        <button id="editMovie" disabled>Update</button>
     </form>
 </div>
 
+Search Field<input id="searchBar" type="text">
 </div>
 
 <div class="container" id="movieDisplay">

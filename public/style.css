@@ -51,7 +51,7 @@ input{
     background-color: black ;
 }
 table{
-    font-size: 20px;
+    font-size: 24px;
     color: deepskyblue;
     /*font-family: 'Russo One', sans-serif;*/
     font-family: 'Permanent Marker', cursive;
@@ -63,4 +63,13 @@ table{
 }
 .topMargin{
     margin-top: 40px;
+}
+#iD,#genre,#title,#rating{
+    cursor: pointer;
+}
+.diffFont{
+    color: yellow;
+}
+.ratingError, .ratingError2{
+    display: none;
 }

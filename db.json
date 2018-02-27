@@ -2,9 +2,9 @@
   "movies": [
     {
       "title": "Casablanca",
-      "rating": "4",
+      "rating": "10",
       "id": 1,
-      "genre": "classic"
+      "genre": "comedy"
     },
     {
       "title": "bye",
@@ -20,9 +20,39 @@
     },
     {
       "title": "next movie",
-      "rating": "4",
+      "rating": "5",
       "id": 4,
       "genre": "drama"
+    },
+    {
+      "title": "Star Wars",
+      "rating": "10",
+      "genre": "sci-fi",
+      "id": 5
+    },
+    {
+      "title": "Harry Potter",
+      "rating": "9",
+      "genre": "sci-fi",
+      "id": 6
+    },
+    {
+      "title": "Liar Liar",
+      "rating": "8",
+      "id": 8,
+      "genre": "comedy"
+    },
+    {
+      "title": "A new movie",
+      "rating": "6",
+      "genre": "drama",
+      "id": 9
+    },
+    {
+      "title": "something",
+      "rating": "9",
+      "genre": "horror",
+      "id": 10
     }
   ]
 }
